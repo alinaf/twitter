@@ -12,13 +12,15 @@ class User {
     
     var dictionary: [String: Any]?
     
-    var name: String
+    var name: String?
+    var screenName: String?
     
     private static var _current: User?
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
+        screenName = dictionary["screen_name"] as? String
 
     }
     
