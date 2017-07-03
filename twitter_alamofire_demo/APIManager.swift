@@ -40,6 +40,8 @@ class APIManager: SessionManager {
                 } else if let user = user {
                     print("Welcome \(user.name)")
                     
+                   
+                    User.current = user
                     // MARK: TODO: set User.current, so that it's persisted
                     
                     success()
@@ -51,15 +53,15 @@ class APIManager: SessionManager {
     }
     
     func logout() {
-        clearCredentials()
         
-        // TODO: Clear current user by setting it to nil
-
+        User.current = nil
+        clearCredentials()
         NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
     
     func getCurrentAccount(completion: @escaping (User?, Error?) -> ()) {
         request(URL(string: "https://api.twitter.com/1.1/account/verify_credentials.json")!)
+            
             .validate()
             .responseJSON { response in
                 
