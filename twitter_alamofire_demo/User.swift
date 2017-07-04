@@ -10,10 +10,13 @@ import Foundation
 
 class User {
     
+    // add colors
+    
     var dictionary: [String: Any]?
     
     var name: String?
     var screenName: String?
+    var profileURL: URL?
     
     private static var _current: User?
     
@@ -21,6 +24,7 @@ class User {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
         screenName = dictionary["screen_name"] as? String
+        profileURL = URL(string: (dictionary["profile_image_url_https"] as? String)!)
 
     }
     

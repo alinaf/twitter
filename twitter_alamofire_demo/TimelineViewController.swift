@@ -13,15 +13,23 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var tweets: [Tweet] = []
     
     @IBOutlet weak var tableView: UITableView!
+   
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+          self.tableView.reloadData()
+        
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 100
+    tableView.rowHeight = UITableViewAutomaticDimension
+      tableView.estimatedRowHeight = 100
         
         APIManager.shared.getHomeTimeLine { (tweets, error) in
             if let tweets = tweets {
