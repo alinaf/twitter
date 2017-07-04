@@ -26,22 +26,13 @@ class TweetCell: UITableViewCell {
             usernameLabel.text = tweet.user.screenName
             let profileURL = tweet.user.profileURL
             profileImageView.af_setImage(withURL: profileURL!)
-            //posterImageView.af_setImage(withURL: posterURL!)
-            
+            profileImageView.layer.cornerRadius = 25
+            profileImageView.clipsToBounds = true
 
         }
     }
 
-    
-    var user: User! {
-        didSet {
 
-            nameLabel.text = user.name
-            usernameLabel.text = user.screenName
-            
-        }
-    }
-    
     
     
     
