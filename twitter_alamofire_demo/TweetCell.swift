@@ -18,6 +18,61 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
     
+    @IBOutlet weak var retweetIcon: UIButton!
+    
+    
+    @IBAction func retweetButton(_ sender: Any) {
+        
+        if retweetIcon.isSelected {
+            retweetIcon.isSelected = false
+            print("unretweeted")
+        }
+        
+        else {
+            retweetIcon.isSelected = true
+            print("retweet")
+        }
+        
+    }
+    
+    @IBOutlet weak var retweetLabel: UILabel!
+    
+    @IBOutlet weak var favoriteIcon: UIButton!
+    
+    
+    
+    @IBAction func favoriteButton(_ sender: Any) {
+        
+        if favoriteIcon.isSelected {
+            favoriteIcon.isSelected = false
+            print("favorited")
+        }
+            
+        else {
+            favoriteIcon.isSelected = true
+            print("unfavorited")
+        }
+        
+    }
+    
+    @IBOutlet weak var favoriteLabel: UILabel!
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
