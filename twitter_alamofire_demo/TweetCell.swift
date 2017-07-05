@@ -9,6 +9,10 @@
 import UIKit
 import AlamofireImage
 
+//protocol TweetCellDelegate {
+//    func didTapReply()
+//}
+
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetTextLabel: UILabel!
@@ -16,6 +20,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+//    weak var delegate: TweetCellDelegate!
     
     
     @IBOutlet weak var retweetIcon: UIButton!
@@ -56,23 +61,7 @@ class TweetCell: UITableViewCell {
     }
     
     @IBOutlet weak var favoriteLabel: UILabel!
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
@@ -86,12 +75,7 @@ class TweetCell: UITableViewCell {
 
         }
     }
-
-
-    
-    
-    
-    
+ 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
