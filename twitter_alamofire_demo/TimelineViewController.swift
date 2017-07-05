@@ -55,18 +55,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func did(post: Tweet) {
         
-        APIManager.shared.getHomeTimeLine { (tweets, error) in
-            if let tweets = tweets {
-                self.tweets = tweets
-                self.tableView.reloadData()
-            } else if let error = error {
-                print("Error getting home timeline: " + error.localizedDescription)
-            }
-        }
-    
+        self.tweets.insert(post, at: 0)
     }
-    
-    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -8,17 +8,16 @@
 
 import UIKit
 
-protocol ComposeViewControllerDelegate {
+protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
 }
 
-class ComposeViewController: UIViewController, ComposeViewControllerDelegate {
-    func did(post: Tweet) {
-    
-    }
+class ComposeViewController: UIViewController {
+   // func did(post: Tweet) {
+   // }
 
     
-      var delegate: ComposeViewControllerDelegate?
+      weak var delegate: ComposeViewControllerDelegate?
     
 
     
@@ -36,13 +35,12 @@ class ComposeViewController: UIViewController, ComposeViewControllerDelegate {
             } else if let tweet = tweet {
                 self.delegate?.did(post: tweet)
                 print("Compose Tweet Success!")
+                self.dismiss(animated: true) 
             }
         }
         
     }
-    
-    
-    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
