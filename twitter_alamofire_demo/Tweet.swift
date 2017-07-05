@@ -19,6 +19,7 @@ class Tweet {
     var retweeted: Bool // Configure retweet button
     var user: User // Contains name, screenname, etc. of tweet author
     var createdAtString: String // Display date
+  
     
     // MARK: - Create initializer with dictionary
     init(dictionary: [String: Any]) {
@@ -32,18 +33,39 @@ class Tweet {
         let user = dictionary["user"] as! [String: Any]
         self.user = User(dictionary: user)
         
-        let createdAtOriginalString = dictionary["created_at"] as! String
-        let formatter = DateFormatter()
-        // Configure the input format to parse the date string
-        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
-        // Convert String to Date
-        let date = formatter.date(from: createdAtOriginalString)!
-        // Configure output format
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        // Convert Date to String
-        createdAtString = formatter.string(from: date)
+        let originalDate = dictionary["created_at"] as! String
         
+        
+                let createdAtOriginalString = dictionary["created_at"] as! String
+                let formatter = DateFormatter()
+                // Configure the input format to parse the date string
+                formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+                // Convert String to Date
+                let date = formatter.date(from: createdAtOriginalString)!
+        
+        //        // Configure output format
+        //        formatter.dateStyle = .short
+        //        formatter.timeStyle = .none
+        //        // Convert Date to String
+        //        createdAtString = formatter.string(from: date)
+        
+        
+//        let createdAtOriginalString = dictionary["created_at"] as! String
+//        let formatter = DateFormatter()
+//        // Configure the input format to parse the date string
+//        formatter.dateFormat = "E MMM d HH:mm:ss Z y"
+//        // Convert String to Date
+//        let date = formatter.date(from: createdAtOriginalString)!
+//        // Configure output format
+//        formatter.dateStyle = .short
+//        formatter.timeStyle = .none
+//        // Convert Date to String
+//        createdAtString = formatter.string(from: date)
+        
+        
+        
+        createdAtString = date.shortTimeAgoSinceNow
+//        
     }
     
     static func tweets(with array: [[String: Any]]) -> [Tweet] {
