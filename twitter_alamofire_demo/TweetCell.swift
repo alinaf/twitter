@@ -158,8 +158,8 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             
-            print(tweet.text)
-            print(tweet.favoriteCount)
+          //  print(tweet.text)
+          //  print(tweet.favoriteCount)
             
             favoriteIcon.isSelected = tweet.favorited
             retweetIcon.isSelected = tweet.retweeted

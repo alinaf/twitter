@@ -27,14 +27,16 @@ var tweets: [Tweet] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
-        usernameLabel.text = user?.screenName
+        usernameLabel.text = user?.name
+        handleLabel.text = user?.screenName
+
         var count = user?.friends_count
         var text = String(describing: count!)
         followingLabel.text = text + " Following"
         
         count = user?.followers_count
         text = String(describing: count!)
-        followingLabel.text = text + " Followers"
+        followersLabel.text = text + " Followers"
         
         bioLabel.text = user?.bio
         locationLabel.text = user?.location

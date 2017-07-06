@@ -11,6 +11,7 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
+    var profileUser : User?
     
     @IBOutlet weak var tableView: UITableView!
    
@@ -68,13 +69,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         return tweets.count
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
-        cell.tweet = tweets[indexPath.row]
         cell.delegate = self
-
-        
+        cell.tweet = tweets[indexPath.row]
+   
         return cell
     }
     
@@ -98,6 +99,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             if segue.identifier == "composeSegue"{
                 let vc = segue.destination as! ComposeViewController
                 vc.delegate = self
+            }
+            else {
+                let vc = segue.destination as! ProfileViewController
+                vc.user = sender as? User
+               
             }
      }
    
