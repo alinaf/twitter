@@ -7,21 +7,20 @@
 //
 
 import UIKit
+import RSKPlaceholderTextView
 
 protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
 }
 
 class ComposeViewController: UIViewController {
-   // func did(post: Tweet) {
-   // }
-
     
       weak var delegate: ComposeViewControllerDelegate?
     
 
     
-    @IBOutlet weak var textField: UITextView!
+    @IBOutlet weak var textField: RSKPlaceholderTextView!
+   
     
     @IBAction func closeCompose(_ sender: Any) {
         self.dismiss(animated: true) {
@@ -40,6 +39,10 @@ class ComposeViewController: UIViewController {
         }
         
     }
+    
+    
+    
+    
  
     
     override func viewDidLoad() {
