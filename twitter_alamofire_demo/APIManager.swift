@@ -14,6 +14,8 @@ import KeychainAccess
 
 class APIManager: SessionManager {
     
+    var screenName: String?
+    
     // MARK: TODO: Add App Keys
     static let consumerKey = "zqoWwDcCVGycGYtaJfcE4Bf4w"
     static let consumerSecret = "GlEL9AuTmFf3WtwIw9SMpTyC0p9cyZhrNWiyE9lG3kbqeca42x"
@@ -227,6 +229,38 @@ class APIManager: SessionManager {
                 completion(tweets, nil)
         }
     }
+    
+    func getScreenName(name: String?) {
+        screenName = name
+    }
+    
+    func getUserTweets (completion: @escaping ([Tweet]?, Error?) -> ()) {
+      
+        
+        
+        request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + screenName!)!, method: .get)
+            .validate()
+            .responseJSON { (response) in
+                guard response.result.isSuccess else {
+                    completion(nil, response.result.error)
+                    return
+                }
+                guard let tweetDictionaries = response.result.value as? [[String: Any]] else {
+                    print("Failed to parse tweets")
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey : "Failed to parse tweets"])
+                    completion(nil, error)
+                    return
+                }
+                
+              
+                
+                let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
+                    Tweet(dictionary: dictionary)
+                })
+                completion(tweets, nil)
+        }
+    }
+
 
     
     //--------------------------------------------------------------------------------//
