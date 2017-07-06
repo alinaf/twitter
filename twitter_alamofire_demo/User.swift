@@ -17,15 +17,24 @@ class User {
     var name: String?
     var screenName: String?
     var profileURL: URL?
+    var backgroundURL: URL?
+    var followers_count: Int?
+    var friends_count: Int?
+    var location: String?
+    var bio: String?
     
     private static var _current: User?
     
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
-        name = dictionary["name"] as! String
+        name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
         profileURL = URL(string: (dictionary["profile_image_url_https"] as? String)!)
-
+        followers_count = dictionary["followers_count"] as? Int
+        friends_count = dictionary["followers_count"] as? Int
+        location = dictionary["location"] as? String
+        bio = dictionary["description"] as? String
+        backgroundURL = URL(string: (dictionary["profile_background_image_url_https"] as? String)!)
     }
     
     static var current: User? {

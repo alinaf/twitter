@@ -31,6 +31,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        postButton.isEnabled = false
         if textField.textColor == UIColor.lightGray {
             textField.text = nil
             textField.textColor = UIColor.black
@@ -52,15 +53,20 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         if textField.text.characters.count > 140 {
             countLabel.textColor = UIColor.red
             postButton.isEnabled = false
-            
+            let overloadInt = 140 - textField.text.characters.count
+            countLabel.text = String(overloadInt)
         }
         
-        if textField.text.characters.count <= 140 {
+        else if textField.text.characters.count == 0 {
+            postButton.isEnabled = false
+            countLabel.text = String(textField.text.characters.count) + "/140"
+        }
+        
+        else {
             countLabel.textColor = UIColor.black
             postButton.isEnabled = true
-            
+            countLabel.text = String(textField.text.characters.count) + "/140"
         }
-        countLabel.text = String(textField.text.characters.count) + "/140"
     }
     
     @IBAction func didPressPost(_ sender: Any) {
