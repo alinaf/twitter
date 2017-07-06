@@ -43,8 +43,10 @@ var tweets: [Tweet] = []
         
         let profileURL = user?.profileURL
         profileView.af_setImage(withURL: profileURL!)
-        profileView.layer.cornerRadius = 50
+        profileView.layer.cornerRadius = profileView.frame.size.width / 2
         profileView.clipsToBounds = true
+        profileView.layer.borderColor = UIColor.white.cgColor
+        profileView.layer.borderWidth = 5
         
        let backgroundURL = user?.backgroundURL
       backgroundView.af_setImage(withURL: backgroundURL!)
