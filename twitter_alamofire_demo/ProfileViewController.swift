@@ -12,8 +12,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     var tweets: [Tweet] = []
-   // var user : User
-    //user = User.current()
+   var user = User.current
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var backgroundView: UIImageView!
@@ -23,26 +22,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
-    
+    @IBOutlet weak var locationLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
-        usernameLabel.text = User.current?.screenName
-        var count = User.current?.friends_count
+        usernameLabel.text = user?.screenName
+        var count = user?.friends_count
         var text = String(describing: count!)
         followingLabel.text = text + " Following"
         
-        count = User.current?.followers_count
+        count = user?.followers_count
         text = String(describing: count!)
         followingLabel.text = text + " Followers"
         
-        let profileURL = User.current?.profileURL
+        bioLabel.text = user?.bio
+        locationLabel.text = user?.location
+        
+        let profileURL = user?.profileURL
         profileView.af_setImage(withURL: profileURL!)
         profileView.layer.cornerRadius = 50
         profileView.clipsToBounds = true
         
-       let backgroundURL = User.current?.backgroundURL
+       let backgroundURL = user?.backgroundURL
       backgroundView.af_setImage(withURL: backgroundURL!)
         
         
