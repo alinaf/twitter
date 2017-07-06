@@ -8,13 +8,16 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate, TweetCellDelegate {
     
     var tweets: [Tweet] = []
     
     @IBOutlet weak var tableView: UITableView!
    
-    
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User) {
+        performSegue(withIdentifier: "profileSegue", sender: user)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +72,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
+        cell.delegate = self
+
         
         return cell
     }
@@ -90,8 +95,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     
           override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            let vc = segue.destination as! ComposeViewController
-            vc.delegate = self
+            if segue.identifier == "composeSegue"{
+                let vc = segue.destination as! ComposeViewController
+                vc.delegate = self
+            }
      }
    
 }

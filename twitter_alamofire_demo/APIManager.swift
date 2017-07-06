@@ -190,8 +190,8 @@ class APIManager: SessionManager {
     
     func getMyTweets(completion: @escaping ([Tweet]?, Error?) -> ()) {
         
-        //         This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
-        //         tweets,
+//                 This uses tweets from disk to avoid hitting rate limit. Comment out if you want fresh
+//                 tweets,
         if let data = UserDefaults.standard.object(forKey: "usertimeline_tweets") as? Data {
             let tweetDictionaries = NSKeyedUnarchiver.unarchiveObject(with: data) as! [[String: Any]]
             let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in
@@ -218,7 +218,7 @@ class APIManager: SessionManager {
                 }
                 
                 let data = NSKeyedArchiver.archivedData(withRootObject: tweetDictionaries)
-                UserDefaults.standard.set(data, forKey: "hometimeline_tweets")
+                UserDefaults.standard.set(data, forKey: "usertimeline_tweets")
                 UserDefaults.standard.synchronize()
                 
                 let tweets = tweetDictionaries.flatMap({ (dictionary) -> Tweet in

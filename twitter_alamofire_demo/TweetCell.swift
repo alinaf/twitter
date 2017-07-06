@@ -10,9 +10,9 @@ import UIKit
 import AlamofireImage
 import DateToolsSwift
 
-//protocol TweetCellDelegate {
-//    func didTapReply()
-//}
+protocol TweetCellDelegate: class {
+    func tweetCell(_ tweetCell: TweetCell, didTap user: User)
+}
 
 class TweetCell: UITableViewCell {
     
@@ -23,7 +23,12 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     
 
-//    weak var delegate: TweetCellDelegate!
+    weak var delegate: TweetCellDelegate?
+
+    
+    func didTapUserProfile(_ sender: UITapGestureRecognizer) {
+        delegate?.tweetCell(self, didTap: tweet.user)
+    }
     
     
     @IBOutlet weak var retweetIcon: UIButton!
@@ -189,6 +194,11 @@ class TweetCell: UITableViewCell {
  
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let profileTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapUserProfile(_:)))
+        profileImageView.addGestureRecognizer(profileTapGestureRecognizer)
+
+
         // Initialization code
     }
     

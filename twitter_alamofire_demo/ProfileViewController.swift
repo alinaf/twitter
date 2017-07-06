@@ -11,7 +11,7 @@ import UIKit
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    var tweets: [Tweet] = []
+var tweets: [Tweet] = []
    var user = User.current
     
     @IBOutlet weak var tableView: UITableView!
@@ -60,7 +60,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        tableView.estimatedRowHeight = 100
 
         
-        APIManager.shared.getHomeTimeLine { (tweets, error) in
+        APIManager.shared.getMyTweets { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()

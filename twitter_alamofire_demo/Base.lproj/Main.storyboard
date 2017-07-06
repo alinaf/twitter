@@ -85,7 +85,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lb8-AF-OsR">
+                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile-Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Lb8-AF-OsR">
                                                     <rect key="frame" x="8" y="16" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="jCx-iy-6FB"/>
@@ -219,6 +219,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Ctl-bI-Eag" id="igH-cX-XMH"/>
+                        <segue destination="E4o-h3-L6j" kind="show" identifier="profileSegue" id="tff-yH-CaQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZlF-i2-Ves" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -307,6 +308,7 @@
                 <tabBarController storyboardIdentifier="TabController" automaticallyAdjustsScrollViewInsets="NO" id="QGH-yF-pLk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="KXJ-zE-3vK">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -369,7 +371,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sample tweet sample tweet sample" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygn-E0-TGe">
-                                                    <rect key="frame" x="67" y="34" width="260" height="95"/>
+                                                    <rect key="frame" x="67" y="34" width="260" height="80"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -427,7 +429,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="129"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxm-1l-T9P">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxm-1l-T9P">
                                 <rect key="frame" x="26" y="119" width="98" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.14386568640210348" green="0.34543543780000002" blue="0.16384992028878897" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -526,4 +528,7 @@
         <image name="retweet-icon" width="30" height="30"/>
         <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="tff-yH-CaQ"/>
+    </inferredMetricsTieBreakers>
 </document>
