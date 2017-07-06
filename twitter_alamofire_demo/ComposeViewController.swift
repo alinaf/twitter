@@ -13,15 +13,13 @@ protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
 }
 
-
-
 class ComposeViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: ComposeViewControllerDelegate?
 
     @IBOutlet weak var textField: UITextView!
    
-    @IBOutlet weak var myTextField: UITextField!
+    @IBOutlet weak var countLabel: UILabel!
     
     @IBOutlet weak var postButton: UIButton!
     
@@ -32,23 +30,37 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textField.textColor == UIColor.lightGray {
+            textField.text = nil
+            textField.textColor = UIColor.black
+        }
+    }
+    
     func textViewDidChange(_ textView: UITextView) {
         updateCharacterCount()
     }
     
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textField.text.isEmpty {
+            textField.text = "#tweet"
+            textField.textColor = UIColor.lightGray
+        }
+    }
+    
     func updateCharacterCount() {
         if textField.text.characters.count > 140 {
-            myTextField.textColor = UIColor.red
+            countLabel.textColor = UIColor.red
             postButton.isEnabled = false
             
         }
         
         if textField.text.characters.count <= 140 {
-            myTextField.textColor = UIColor.black
+            countLabel.textColor = UIColor.black
             postButton.isEnabled = true
             
         }
-        myTextField.text = String(textField.text.characters.count) + "/140"
+        countLabel.text = String(textField.text.characters.count) + "/140"
     }
     
     @IBAction func didPressPost(_ sender: Any) {
@@ -72,7 +84,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.delegate = self
-        // Do any additional setup after loading the view.
+        textField.text = "#tweet"
+        textField.textColor = UIColor.lightGray
     }
 
     override func didReceiveMemoryWarning() {

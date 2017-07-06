@@ -20,6 +20,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         self.tableView.reloadData()
         
+        
         let refreshControl = UIRefreshControl()
          refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
          tableView.insertSubview(refreshControl, at: 0)
