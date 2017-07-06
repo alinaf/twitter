@@ -7,19 +7,24 @@
 //
 
 import UIKit
-import RSKPlaceholderTextView
+//import RSKPlaceholderTextView
 
 protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
 }
 
-class ComposeViewController: UIViewController {
-    
-      weak var delegate: ComposeViewControllerDelegate?
-    
 
+
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
-    @IBOutlet weak var textField: RSKPlaceholderTextView!
+    weak var delegate: ComposeViewControllerDelegate?
+
+    @IBOutlet weak var textField: UITextView!
+   
+    @IBOutlet weak var myTextField: UITextField!
+    
+    @IBOutlet weak var postButton: UIButton!
+    
    
     
     @IBAction func closeCompose(_ sender: Any) {
@@ -27,7 +32,27 @@ class ComposeViewController: UIViewController {
         }
     }
     
+    func textViewDidChange(_ textView: UITextView) {
+        updateCharacterCount()
+    }
+    
+    func updateCharacterCount() {
+        if textField.text.characters.count > 140 {
+            myTextField.textColor = UIColor.red
+            postButton.isEnabled = false
+            
+        }
+        
+        if textField.text.characters.count <= 140 {
+            myTextField.textColor = UIColor.black
+            postButton.isEnabled = true
+            
+        }
+        myTextField.text = String(textField.text.characters.count) + "/140"
+    }
+    
     @IBAction func didPressPost(_ sender: Any) {
+        print(textField.text.characters.count)
         APIManager.shared.composeTweet(with: textField.text) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
@@ -37,17 +62,16 @@ class ComposeViewController: UIViewController {
                 self.dismiss(animated: true) 
             }
         }
-        
     }
     
+//    text view did begin editing
+//    text view did change
+//    character count
     
-    
-    
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        textField.delegate = self
         // Do any additional setup after loading the view.
     }
 
