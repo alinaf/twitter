@@ -29,7 +29,16 @@ class User {
         self.dictionary = dictionary
         name = dictionary["name"] as? String
         screenName = dictionary["screen_name"] as? String
-        profileURL = URL(string: (dictionary["profile_image_url_https"] as? String)!)
+        let originalprofileURLString = dictionary["profile_image_url_https"] as! String
+        var profileURLString = originalprofileURLString
+        let wordToRemove = "_normal"
+        if let range = originalprofileURLString.range(of: wordToRemove) {
+            profileURLString.removeSubrange(range)
+        }
+        
+        
+        profileURL = URL(string: profileURLString)
+        
         followers_count = dictionary["followers_count"] as? Int
         friends_count = dictionary["friends_count"] as? Int
         location = dictionary["location"] as? String
