@@ -31,7 +31,7 @@ class User {
         screenName = dictionary["screen_name"] as? String
         profileURL = URL(string: (dictionary["profile_image_url_https"] as? String)!)
         followers_count = dictionary["followers_count"] as? Int
-        friends_count = dictionary["followers_count"] as? Int
+        friends_count = dictionary["friends_count"] as? Int
         location = dictionary["location"] as? String
         bio = dictionary["description"] as? String
         backgroundURL = URL(string: (dictionary["profile_background_image_url_https"] as? String)!)
