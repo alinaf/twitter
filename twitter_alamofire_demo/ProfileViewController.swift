@@ -7,22 +7,34 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
 var tweets: [Tweet] = []
    var user = User.current
-    
+
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backgroundView: UIImageView!
-    @IBOutlet weak var profileView: UIImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    @IBOutlet weak var profileView: UIImageView!
+    
+    @IBOutlet weak var backgroundView: UIImageView!
+   
     @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var followingLabel: UILabel!
-    @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+   
+    @IBOutlet weak var followingLabel: UILabel!
+    
+    
+    
+
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +54,14 @@ var tweets: [Tweet] = []
         locationLabel.text = user?.location
         
         let profileURL = user?.profileURL
-        profileView.af_setImage(withURL: profileURL!)
+       profileView.af_setImage(withURL: profileURL!)
         profileView.layer.cornerRadius = profileView.frame.size.width / 2
         profileView.clipsToBounds = true
         profileView.layer.borderColor = UIColor.white.cgColor
         profileView.layer.borderWidth = 5
         
-    let backgroundURL = user?.backgroundURL
-      backgroundView.af_setImage(withURL: backgroundURL!)
+        let backgroundURL = user?.backgroundURL
+        backgroundView.af_setImage(withURL: backgroundURL!)
         
         
         let refreshControl = UIRefreshControl()
@@ -97,7 +109,7 @@ var tweets: [Tweet] = []
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! ProfileCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell", for: indexPath) as! TweetCell
         
         cell.tweet = tweets[indexPath.row]
         
