@@ -48,7 +48,7 @@ var tweets: [Tweet] = []
         profileView.layer.borderColor = UIColor.white.cgColor
         profileView.layer.borderWidth = 5
         
-       let backgroundURL = user?.backgroundURL
+    let backgroundURL = user?.backgroundURL
       backgroundView.af_setImage(withURL: backgroundURL!)
         
         
