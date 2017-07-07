@@ -14,7 +14,6 @@ import KeychainAccess
 
 class APIManager: SessionManager {
     
-    var screenName: String?
     
     // MARK: TODO: Add App Keys
     static let consumerKey = "zqoWwDcCVGycGYtaJfcE4Bf4w"
@@ -230,15 +229,13 @@ class APIManager: SessionManager {
         }
     }
     
-    func getScreenName(name: String?) {
-        screenName = name
-    }
-    
-    func getUserTweets (completion: @escaping ([Tweet]?, Error?) -> ()) {
-      
-        
-        
-        request(URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + screenName!)!, method: .get)
+
+    func getUserTweets (screenName: String?, completion: @escaping ([Tweet]?, Error?) -> ()) {
+        guard let screenName = screenName, let url = URL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + screenName) else {
+            return
+        }
+
+        request(url, method: .get)
             .validate()
             .responseJSON { (response) in
                 guard response.result.isSuccess else {

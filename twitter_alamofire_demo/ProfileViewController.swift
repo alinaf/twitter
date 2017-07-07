@@ -63,8 +63,8 @@ var tweets: [Tweet] = []
 //        tableView.rowHeight = UITableViewAutomaticDimension
 //        tableView.estimatedRowHeight = 100
 
-        APIManager.shared.getScreenName(name: user?.screenName)
-        APIManager.shared.getUserTweets { (tweets, error) in
+    
+        APIManager.shared.getUserTweets(screenName: user?.screenName) { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
@@ -78,7 +78,7 @@ var tweets: [Tweet] = []
 
     
     func refreshControlAction(_ refreshControl: UIRefreshControl){
-        APIManager.shared.getUserTweets { (tweets, error) in
+        APIManager.shared.getUserTweets(screenName: user?.screenName) { (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
