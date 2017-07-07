@@ -19,22 +19,14 @@ var tweets: [Tweet] = []
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
-    
     @IBOutlet weak var profileView: UIImageView!
-    
     @IBOutlet weak var backgroundView: UIImageView!
-   
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
-   
     @IBOutlet weak var followingLabel: UILabel!
     
-    
-    
-
-
-    
+ 
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,9 +63,10 @@ var tweets: [Tweet] = []
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = 200
-//        tableView.rowHeight = UITableViewAutomaticDimension
-//        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        
+
 
     
         APIManager.shared.getUserTweets(screenName: user?.screenName) { (tweets, error) in

@@ -342,7 +342,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Gkn-bD-Wjh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="405"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="407"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBK-tC-Xav">
@@ -371,7 +371,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d83-Ah-iLG">
-                                                    <rect key="frame" x="0.0" y="8" width="375" height="104"/>
+                                                    <rect key="frame" x="0.0" y="-11" width="375" height="123"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u16-PA-Bn8">
@@ -407,7 +407,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="499" id="ULi-gl-QBc" customClass="TweetCell" customModule="twitter_alamofire_demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="433" width="375" height="499"/>
+                                        <rect key="frame" x="0.0" y="435" width="375" height="499"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ULi-gl-QBc" id="chd-Z6-1Lp">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="498.5"/>
