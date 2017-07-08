@@ -7,7 +7,8 @@
 //
 
 import UIKit
-//import RSKPlaceholderTextView
+import KRProgressHUD
+
 
 protocol ComposeViewControllerDelegate: class {
     func did(post: Tweet)
@@ -70,14 +71,15 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func didPressPost(_ sender: Any) {
-        print(textField.text.characters.count)
+        KRProgressHUD.show()
         APIManager.shared.composeTweet(with: textField.text) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
             } else if let tweet = tweet {
                 self.delegate?.did(post: tweet)
                 print("Compose Tweet Success!")
-                self.dismiss(animated: true) 
+                self.dismiss(animated: true)
+                KRProgressHUD.dismiss()
             }
         }
     }
